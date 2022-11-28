@@ -15,6 +15,9 @@ class TestFormRequest
 {
     private FormRequest $request;
 
+    /** @var array<string, mixed> */
+    private array $defaultData = [];
+
     /**
      * TestFormRequest constructor.
      *
@@ -26,6 +29,21 @@ class TestFormRequest
     }
 
     /**
+     * Set a default payload for the request.
+     * This payload will get merged with the payload given in the `validate()` method.
+     *
+     * @param array<string, mixed> $data
+     *
+     * @return $this
+     */
+    public function defaultData(array $data = []): static
+    {
+        $this->defaultData = $data;
+
+        return $this;
+    }
+
+    /**
      * Validate the request with the given data.
      *
      * @param array<string, mixed> $data
@@ -33,6 +51,7 @@ class TestFormRequest
      */
     public function validate(array $data = []): TestValidationResult
     {
+        $data = array_merge($this->defaultData, $data);
         $this->request->request = new ParameterBag($data);
 
         /** @var Validator $validator */
