@@ -2,7 +2,7 @@
 
 ## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.0.2...master)
 
-## [v0.0.2](https://github.com/markwalet/laravel-testable-requests/compare/v0.0.1...v0.0.2)
+## [v0.0.2 (2022-11-28)](https://github.com/markwalet/laravel-testable-requests/compare/v0.0.1...v0.0.2)
 
 ### Added
 - Added a `defaultData()` method to the request.
