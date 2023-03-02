@@ -1,6 +1,11 @@
 # Changelog
 
-## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.0.2...master)
+## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.1.0...master)
+
+## [v0.1.0 (2023-03-02)](https://github.com/markwalet/laravel-testable-requests/compare/v0.0.2...v0.1.0)
+
+### Added
+- Added Laravel 10 support
 
 ## [v0.0.2 (2022-11-28)](https://github.com/markwalet/laravel-testable-requests/compare/v0.0.1...v0.0.2)
 
