@@ -27,7 +27,7 @@
     "require": {
         "php": "^8.0",
         "laravel/framework": "^9.41|^10.0",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5|^10.0"
     },
     "prefer-stable": true,
     "config": {

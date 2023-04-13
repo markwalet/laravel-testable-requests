@@ -1,6 +1,11 @@
 # Changelog
 
-## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.1.0...master)
+## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.1.1...master)
+
+## [v0.1.1 (2023-03-13)](https://github.com/markwalet/laravel-testable-requests/compare/v0.1.0...v0.1.1)
+
+### Added
+- Added PHPUnit 10 support
 
 ## [v0.1.0 (2023-03-02)](https://github.com/markwalet/laravel-testable-requests/compare/v0.0.2...v0.1.0)
 
