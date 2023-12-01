@@ -1,6 +1,17 @@
 # Changelog
 
-## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.2.0...master)
+## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.3.0...master)
+
+
+## [v0.2.1 (2023-12-01)](https://github.com/markwalet/laravel-testable-requests/compare/v0.2.0...v0.3.0)
+
+### Added
+- Added direct `laravel/framework` dependency.
+
+### Fixed
+- Convert failed rules to snake case when it's not a custom rule class.
+- Make assertions more exact by keeping array structure of errors intact.
+- Move `phpunit/phpunit` dependency to dev-dependencies.
 
 ## [v0.2.0 (2023-12-01)](https://github.com/markwalet/laravel-testable-requests/compare/v0.1.1...v0.2.0)
 

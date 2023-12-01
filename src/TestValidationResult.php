@@ -2,6 +2,7 @@
 
 namespace MarkWalet\TestableRequests;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -60,12 +61,13 @@ class TestValidationResult
             return $this;
         }
 
-        $failedRules = Arr::dot($this->getFailedRules());
+        $failedRules = $this->getFailedRules();
+        $failedFields = array_keys($failedRules);
         $expectedFailedRules = Arr::dot($expectedFailedRules);
 
-        foreach ($expectedFailedRules as $expectedFailedRule => $constraints) {
-            assertArrayHasKey($expectedFailedRule, $failedRules);
-            assertStringContainsString($constraints, $failedRules[$expectedFailedRule]);
+        foreach ($expectedFailedRules as $field => $rule) {
+            assertArrayHasKey($field, $failedRules, "Failed asserting that there was a validation error for '$field'. Got: ".json_encode($failedFields));
+            assertContains($rule, $failedRules[$field], "Failed asserting that '$field' got a $rule validation error. Got: ".json_encode($failedRules[$field]));
         }
 
         return $this;
@@ -81,13 +83,12 @@ class TestValidationResult
     public function assertFailsValidationFor(string $field, Stringable|string|null $rule = null): static
     {
         assertTrue($this->validator->fails());
-        $failedRules = Arr::dot($this->getFailedRules());
+        $failedRules = $this->getFailedRules();
         $failedFields = array_keys($failedRules);
 
-        assertArrayHasKey($field, $failedRules, "Failed asserting that there was a validation error for '$field'. Got: ". json_encode($failedFields));
-
+        assertArrayHasKey($field, $failedRules, "Failed asserting that there was a validation error for '$field'. Got: ".json_encode($failedFields));
         if ($rule !== null) {
-            assertStringContainsString($rule, $failedRules[$field]);
+            assertContains((string) $rule, $failedRules[$field], "Failed asserting that '$field' got a $rule validation error. Got: ".json_encode($failedRules[$field]));
         }
 
         return $this;
@@ -125,15 +126,14 @@ class TestValidationResult
 
         return collect($this->validator->failed())
             ->map(function ($details) {
-                return collect($details)->reduce(function ($aggregateRule, $constraints, $ruleName) {
-                    $failedRule = class_exists($ruleName) ? $ruleName : Str::lower($ruleName);
+                return collect($details)->map(function ($constraints, $rule) {
+                    // TODO: Separate logic out to own class.
+                    $rule = class_exists($rule) && class_implements($rule, ValidationRule::class) ? $rule : Str::snake($rule);
 
-                    if (count($constraints)) {
-                        $failedRule .= ':'.implode(',', $constraints);
-                    }
-
-                    return $aggregateRule.$failedRule;
-                });
+                    return (count($constraints))
+                        ? $rule.':'.implode(',', $constraints)
+                        : $rule;
+                })->values()->toArray();
             })
             ->toArray();
     }
