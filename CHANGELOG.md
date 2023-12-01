@@ -1,9 +1,14 @@
 # Changelog
 
-## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.3.0...master)
+## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.3.1...master)
 
 
-## [v0.2.1 (2023-12-01)](https://github.com/markwalet/laravel-testable-requests/compare/v0.2.0...v0.3.0)
+## [v0.3.1 (2023-12-01)](https://github.com/markwalet/laravel-testable-requests/compare/v0.3.0...v0.3.1)
+
+### Fixed
+- Added missing cast in `assertFailsValidation`
+
+## [v0.3.0 (2023-12-01)](https://github.com/markwalet/laravel-testable-requests/compare/v0.2.0...v0.3.0)
 
 ### Added
 - Added direct `laravel/framework` dependency.

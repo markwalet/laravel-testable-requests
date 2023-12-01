@@ -66,7 +66,7 @@ class TestValidationResult
 
         foreach ($expectedFailedRules as $field => $rule) {
             assertArrayHasKey($field, $failedRules, "Failed asserting that there was a validation error for '$field'. Got: ".json_encode($failedFields));
-            assertContains($rule, $failedRules[$field], "Failed asserting that '$field' got a $rule validation error. Got: ".json_encode($failedRules[$field]));
+            assertContains((string) $rule, $failedRules[$field], "Failed asserting that '$field' got a $rule validation error. Got: ".json_encode($failedRules[$field]));
         }
 
         return $this;
