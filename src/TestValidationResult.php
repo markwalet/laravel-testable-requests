@@ -6,9 +6,9 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Validator;
+use Stringable;
 use function PHPUnit\Framework\assertArrayHasKey;
 use function PHPUnit\Framework\assertContains;
-use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertStringContainsString;
 use function PHPUnit\Framework\assertTrue;
 
@@ -74,18 +74,20 @@ class TestValidationResult
     /**
      * Assert that the request fails validation.
      *
-     * @param string|array<int, string> $fields
+     * @param string $field
+     * @param Stringable|string|null $rule
      * @return $this
      */
-    public function assertFailsValidationFor(string|array $fields): static
+    public function assertFailsValidationFor(string $field, Stringable|string|null $rule = null): static
     {
         assertTrue($this->validator->fails());
         $failedRules = Arr::dot($this->getFailedRules());
         $failedFields = array_keys($failedRules);
-        $expectedFields = Arr::wrap($fields);
 
-        foreach($expectedFields as $field) {
-            assertArrayHasKey($field, $failedRules, "Failed asserting that there was a validation error for '$field'. Got: ". json_encode($failedFields));
+        assertArrayHasKey($field, $failedRules, "Failed asserting that there was a validation error for '$field'. Got: ". json_encode($failedFields));
+
+        if ($rule !== null) {
+            assertStringContainsString($rule, $failedRules[$field]);
         }
 
         return $this;

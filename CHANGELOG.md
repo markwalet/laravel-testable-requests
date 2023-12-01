@@ -1,6 +1,11 @@
 # Changelog
 
-## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.1.1...master)
+## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.2.0...master)
+
+## [v0.2.0 (2023-12-01)](https://github.com/markwalet/laravel-testable-requests/compare/v0.1.1...v0.2.0)
+
+### Added
+- Make it possible to assert a specific rule in `assetFailsValidationFor()`
 
 ## [v0.1.1 (2023-03-13)](https://github.com/markwalet/laravel-testable-requests/compare/v0.1.0...v0.1.1)
 
