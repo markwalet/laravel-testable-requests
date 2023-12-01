@@ -1,7 +1,11 @@
 # Changelog
 
-## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.3.1...master)
+## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.3.2...master)
 
+## [v0.3.2 (2023-12-01)](https://github.com/markwalet/laravel-testable-requests/compare/v0.3.1...v0.3.2)
+
+### Added
+- Added `assertPassesValidationFor` assertion method
 
 ## [v0.3.1 (2023-12-01)](https://github.com/markwalet/laravel-testable-requests/compare/v0.3.0...v0.3.1)
 

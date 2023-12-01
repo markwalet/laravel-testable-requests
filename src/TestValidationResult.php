@@ -9,6 +9,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Validator;
 use Stringable;
 use function PHPUnit\Framework\assertArrayHasKey;
+use function PHPUnit\Framework\assertArrayNotHasKey;
 use function PHPUnit\Framework\assertContains;
 use function PHPUnit\Framework\assertTrue;
 
@@ -42,6 +43,22 @@ class TestValidationResult
                 json_encode($this->getFailedRules(), JSON_PRETTY_PRINT)
             )
         );
+
+        return $this;
+    }
+
+    /**
+     * Assert that the request passes validation.
+     *
+     * @return $this
+     */
+    public function assertPassesValidationFor(string $field): static
+    {
+        assertTrue($this->validator->fails());
+        $failedRules = $this->getFailedRules();
+        $failedFields = array_keys($failedRules);
+
+        assertArrayNotHasKey($field, $failedRules, "Failed asserting that there was no validation error for '$field'. Got: ".json_encode($failedFields));
 
         return $this;
     }
