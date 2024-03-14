@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Validator;
-use Symfony\Component\HttpFoundation\ParameterBag;
+use Symfony\Component\HttpFoundation\InputBag;
 use function PHPUnit\Framework\assertFalse;
 use function PHPUnit\Framework\assertTrue;
 
@@ -52,7 +52,7 @@ class TestFormRequest
     public function validate(array $data = []): TestValidationResult
     {
         $data = array_merge($this->defaultData, $data);
-        $this->request->request = new ParameterBag($data);
+        $this->request->request = new InputBag($data);
 
         /** @var Validator $validator */
         $validator = Closure::fromCallable(function () {
