@@ -1,6 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.3.4...master)
+## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.4.0...master)
+
+## [v0.4.0 (2024-02-05)](https://github.com/markwalet/laravel-testable-requests/compare/v0.3.4...v0.4.0)
 
 ### Added
 - Added support for Laravel 12
