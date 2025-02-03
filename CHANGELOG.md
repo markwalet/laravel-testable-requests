@@ -2,6 +2,12 @@
 
 ## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.3.4...master)
 
+### Added
+- Added support for Laravel 12
+
+### Removed
+- Removed support for Laravel 11
+
 ## [v0.3.4 (2024-02-05)](https://github.com/markwalet/laravel-testable-requests/compare/v0.3.3...v0.3.4)
 
 ### Fixed
