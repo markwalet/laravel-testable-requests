@@ -1,8 +1,13 @@
 # Changelog
 
-## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.4.0...master)
+## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.4.1...master)
 
-## [v0.4.0 (2024-02-05)](https://github.com/markwalet/laravel-testable-requests/compare/v0.3.4...v0.4.0)
+## [v0.4.1 (2025-03-05)](https://github.com/markwalet/laravel-testable-requests/compare/v0.4.0...v0.4.1)
+
+### Fixed
+- Fixed deprecation warnings for PHP 8.4
+
+## [v0.4.0 (2025-02-05)](https://github.com/markwalet/laravel-testable-requests/compare/v0.3.4...v0.4.0)
 
 ### Added
 - Added support for Laravel 12

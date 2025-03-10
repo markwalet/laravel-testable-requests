@@ -24,7 +24,7 @@ class TestValidationResult
      * @param Validator $validator
      * @param ValidationException|null $failed
      */
-    public function __construct(Validator $validator, ?ValidationException $failed = null)
+    public function __construct(Validator $validator, ValidationException|null $failed = null)
     {
         $this->validator = $validator;
         $this->failed = $failed;
