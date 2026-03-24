@@ -2,6 +2,8 @@
 
 ## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.4.1...master)
 
+## [v0.5.0 (2026-03-24)](https://github.com/markwalet/laravel-testable-requests/compare/v0.4.1...v0.5.0)
+
 ### Added
 - Added support for Laravel 13
 
