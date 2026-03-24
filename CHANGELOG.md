@@ -2,6 +2,12 @@
 
 ## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.4.1...master)
 
+### Added
+- Added support for Laravel 13
+
+### Changed
+- Raised the minimum supported PHP version to 8.1
+
 ## [v0.4.1 (2025-03-05)](https://github.com/markwalet/laravel-testable-requests/compare/v0.4.0...v0.4.1)
 
 ### Fixed
