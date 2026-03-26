@@ -23,3 +23,11 @@ The documentation is still being worked on. For now, please look at how these cl
 - Improved type hinting
 - Added `defaultData()` method to the request
 - Added `assertFailsValidationFor()` method to the validation result.
+
+## Testing
+
+Run the package test suite with:
+
+```shell
+composer test
+```

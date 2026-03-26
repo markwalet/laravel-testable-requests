@@ -130,7 +130,7 @@ class TestFormRequest
      */
     public function assertNotAuthorized(): void
     {
-        $this->assertNotAuthorized();
+        $this->assertUnauthorized();
     }
 
     /**
