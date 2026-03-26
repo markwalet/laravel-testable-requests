@@ -10,7 +10,7 @@ use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
 {
-    protected static ?TestResponse $latestResponse = null;
+    public static ?TestResponse $latestResponse = null;
 
     protected function makeRequest(string $requestClass, array $headers = [], string $method = 'POST'): TestFormRequest
     {
