@@ -11,7 +11,7 @@ abstract class TestCase extends Orchestra
 {
     protected function makeRequest(string $requestClass, array $headers = [], string $method = 'POST'): TestFormRequest
     {
-        return new class($this) {
+        $requestFactory = new class($this) {
             use ValidatesRequests;
 
             public function __construct(private readonly Orchestra $testCase)
@@ -51,7 +51,9 @@ abstract class TestCase extends Orchestra
 
                 return $server;
             }
-        }->make($requestClass, $headers, $method);
+        };
+
+        return $requestFactory->make($requestClass, $headers, $method);
     }
 
     public function makeUrl(string $uri): string
