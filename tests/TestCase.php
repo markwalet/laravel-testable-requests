@@ -3,12 +3,15 @@
 namespace MarkWalet\TestableRequests\Tests;
 
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Testing\TestResponse;
 use MarkWalet\TestableRequests\TestFormRequest;
 use MarkWalet\TestableRequests\ValidatesRequests;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
 {
+    protected static ?TestResponse $latestResponse = null;
+
     protected function makeRequest(string $requestClass, array $headers = [], string $method = 'POST'): TestFormRequest
     {
         $requestFactory = new class($this) {
