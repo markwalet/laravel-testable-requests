@@ -2,6 +2,19 @@
 
 ## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.4.1...master)
 
+### Added
+- Added a PHPUnit and Orchestra Testbench test suite for package-level request validation helpers.
+- Added GitHub Actions workflows for the test matrix and coverage reporting.
+
+### Changed
+- Raised the minimum supported PHP version to 8.2.
+
+### Fixed
+- Fixed `assertNotAuthorized()` to call the unauthorized assertion instead of recursively calling itself.
+
+### Removed
+- Removed support for Laravel 10.
+
 ## [v0.5.0 (2026-03-24)](https://github.com/markwalet/laravel-testable-requests/compare/v0.4.1...v0.5.0)
 
 ### Added
