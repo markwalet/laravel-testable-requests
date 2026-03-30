@@ -5,6 +5,7 @@
 ### Added
 - Added a PHPUnit and Orchestra Testbench test suite for package-level request validation helpers.
 - Added GitHub Actions workflows for the test matrix and coverage reporting.
+- Added Laravel Pint and Larastan to handle code quality assurance.
 
 ### Changed
 - Raised the minimum supported PHP version to 8.2.
@@ -12,6 +13,7 @@
 
 ### Fixed
 - Fixed `assertNotAuthorized()` to call the unauthorized assertion instead of recursively calling itself.
+- Fixed internal and test-suite typing issues so PHPStan passes at level 6.
 
 ### Removed
 - Removed support for Laravel 10.

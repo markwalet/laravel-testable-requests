@@ -8,9 +8,12 @@ class SampleFormRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return (bool) $this->user()?->can_submit;
+        return (bool) data_get($this->user(), 'can_submit');
     }
 
+    /**
+     * @return array<string, list<string>>
+     */
     public function rules(): array
     {
         return [
@@ -20,6 +23,9 @@ class SampleFormRequest extends FormRequest
         ];
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function messages(): array
     {
         return [

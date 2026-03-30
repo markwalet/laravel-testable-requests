@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Validator;
 use Stringable;
+
 use function PHPUnit\Framework\assertArrayHasKey;
 use function PHPUnit\Framework\assertArrayNotHasKey;
 use function PHPUnit\Framework\assertContains;
@@ -16,6 +17,7 @@ use function PHPUnit\Framework\assertTrue;
 class TestValidationResult
 {
     private Validator $validator;
+
     private ?ValidationException $failed;
 
     /**
@@ -24,7 +26,7 @@ class TestValidationResult
      * @param Validator $validator
      * @param ValidationException|null $failed
      */
-    public function __construct(Validator $validator, ValidationException|null $failed = null)
+    public function __construct(Validator $validator, ?ValidationException $failed = null)
     {
         $this->validator = $validator;
         $this->failed = $failed;
@@ -113,11 +115,10 @@ class TestValidationResult
     /**
      * Assert that the request contains a validation message.
      *
-     * @param $message
-     * @param $rule
-     * @return $this
+     * @param string $message
+     * @param string|null $rule
      */
-    public function assertHasMessage($message, $rule = null): static
+    public function assertHasMessage(string $message, ?string $rule = null): static
     {
         $validationMessages = $this->getValidationMessages($rule);
         assertContains($message, $validationMessages,
@@ -132,35 +133,45 @@ class TestValidationResult
     /**
      * Get a list of all rules that failed.
      *
-     * @return array
+     * @return array<string, list<string>>
      */
     public function getFailedRules(): array
     {
-        if (!$this->failed) {
+        if (! $this->failed) {
             return [];
         }
 
-        return collect($this->validator->failed())
-            ->map(function ($details) {
-                return collect($details)->map(function ($constraints, $rule) {
-                    // TODO: Separate logic out to own class.
-                    $rule = class_exists($rule) && class_implements($rule, ValidationRule::class) ? $rule : Str::snake($rule);
+        $failedRules = [];
 
-                    return (count($constraints))
-                        ? $rule.':'.implode(',', $constraints)
-                        : $rule;
-                })->values()->toArray();
-            })
-            ->toArray();
+        foreach ($this->validator->failed() as $field => $details) {
+            $fieldRules = [];
+
+            foreach ($details as $rule => $constraints) {
+                $implementedInterfaces = class_exists($rule) ? class_implements($rule) ?: [] : [];
+
+                // TODO: Separate logic out to own class.
+                $normalizedRule = in_array(ValidationRule::class, $implementedInterfaces, true)
+                    ? $rule
+                    : Str::snake($rule);
+
+                $fieldRules[] = count($constraints) > 0
+                    ? $normalizedRule.':'.implode(',', $constraints)
+                    : $normalizedRule;
+            }
+
+            $failedRules[$field] = $fieldRules;
+        }
+
+        return $failedRules;
     }
 
     /**
      * Get a list of validation messages from the request.
      *
-     * @param $rule
+     * @param string|null $rule
      * @return array<int, string>
      */
-    private function getValidationMessages($rule = null): array
+    private function getValidationMessages(?string $rule = null): array
     {
         $messages = $this->validator->messages()->getMessages();
         if ($rule) {
