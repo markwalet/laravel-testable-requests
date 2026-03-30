@@ -2,12 +2,13 @@
 
 namespace MarkWalet\TestableRequests;
 
-use Closure;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Validator;
+use ReflectionMethod;
 use Symfony\Component\HttpFoundation\InputBag;
+
 use function PHPUnit\Framework\assertFalse;
 use function PHPUnit\Framework\assertTrue;
 
@@ -47,17 +48,17 @@ class TestFormRequest
      * Validate the request with the given data.
      *
      * @param array<string, mixed> $data
-     * @return TestValidationResult
      */
     public function validate(array $data = []): TestValidationResult
     {
         $data = array_merge($this->defaultData, $data);
         $this->request->request = new InputBag($data);
 
+        $reflectionMethod = new ReflectionMethod($this->request, 'getValidatorInstance');
+        $reflectionMethod->setAccessible(true);
+
         /** @var Validator $validator */
-        $validator = Closure::fromCallable(function () {
-            return $this->getValidatorInstance();
-        })->call($this->request);
+        $validator = $reflectionMethod->invoke($this->request);
 
         try {
             $validator->validate();
@@ -72,11 +73,10 @@ class TestFormRequest
      * Execute the request for a given user.
      *
      * @param Authenticatable|null $user
-     * @return $this
      */
-    public function by(Authenticatable|null $user = null)
+    public function by(null|Authenticatable $user = null): static
     {
-        $this->request->setUserResolver(fn() => $user);
+        $this->request->setUserResolver(fn () => $user);
 
         return $this;
     }
@@ -89,7 +89,7 @@ class TestFormRequest
      */
     public function withParams(array $params): static
     {
-        foreach($params as $param => $value) {
+        foreach ($params as $param => $value) {
             $this->withParam($param, $value);
         }
 
@@ -118,7 +118,7 @@ class TestFormRequest
     public function assertAuthorized(): void
     {
         assertTrue(
-            $this->bully(fn() => $this->passesAuthorization(), $this->request),
+            $this->passesAuthorization(),
             'The provided user is not authorized by this request'
         );
     }
@@ -141,13 +141,19 @@ class TestFormRequest
     public function assertUnauthorized(): void
     {
         assertFalse(
-            $this->bully(fn() => $this->passesAuthorization(), $this->request),
+            $this->passesAuthorization(),
             'The provided user is authorized by this request'
         );
     }
 
-    private function bully(Closure $elevatedFunction, object $targetObject)
+    private function passesAuthorization(): bool
     {
-        return Closure::fromCallable($elevatedFunction)->call($targetObject);
+        $reflectionMethod = new ReflectionMethod($this->request, 'passesAuthorization');
+        $reflectionMethod->setAccessible(true);
+
+        /** @var bool $authorized */
+        $authorized = $reflectionMethod->invoke($this->request);
+
+        return $authorized;
     }
 }
