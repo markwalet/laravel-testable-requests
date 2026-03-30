@@ -1,6 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.4.1...master)
+## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.6.0...master)
+
+## [v0.6.0 (2026-03-30)](https://github.com/markwalet/laravel-testable-requests/compare/v0.5.0...v0.6.0)
 
 ### Added
 - Added a PHPUnit and Orchestra Testbench test suite for package-level request validation helpers.
