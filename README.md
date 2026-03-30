@@ -1,8 +1,9 @@
 # Laravel Testable requests
 
-[![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Latest Stable Version](https://poser.pugx.org/markwalet/laravel-testable-requests/v/stable)](https://packagist.org/packages/markwalet/laravel-testable-requests)
-[![Total Downloads](https://poser.pugx.org/markwalet/laravel-testable-requests/downloads)](https://packagist.org/packages/markwalet/laravel-testable-requests)
+[![Build Status](https://github.com/markwalet/laravel-testable-requests/workflows/tests/badge.svg)](https://github.com/markwalet/laravel-testable-requests/actions)
+[![Total Downloads](https://img.shields.io/packagist/dt/markwalet/laravel-testable-requests)](https://packagist.org/packages/markwalet/laravel-testable-requests)
+[![Latest Stable Version](https://img.shields.io/packagist/v/markwalet/laravel-testable-requests)](https://packagist.org/packages/markwalet/laravel-testable-requests)
+[![License](https://img.shields.io/packagist/l/markwalet/laravel-testable-requests)](https://packagist.org/packages/markwalet/laravel-testable-requests)
 
 A Laravel package to make request testing easier.
 
