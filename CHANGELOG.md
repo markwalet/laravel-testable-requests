@@ -8,6 +8,7 @@
 
 ### Changed
 - Raised the minimum supported PHP version to 8.2.
+- Updated dependabot configuration.
 
 ### Fixed
 - Fixed `assertNotAuthorized()` to call the unauthorized assertion instead of recursively calling itself.
