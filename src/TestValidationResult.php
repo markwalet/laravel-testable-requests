@@ -18,7 +18,7 @@ class TestValidationResult
 {
     private Validator $validator;
 
-    private ?ValidationException $failed;
+    private null|ValidationException $failed;
 
     /**
      * TestValidationResult constructor.
@@ -26,7 +26,7 @@ class TestValidationResult
      * @param Validator $validator
      * @param ValidationException|null $failed
      */
-    public function __construct(Validator $validator, ?ValidationException $failed = null)
+    public function __construct(Validator $validator, null|ValidationException $failed = null)
     {
         $this->validator = $validator;
         $this->failed = $failed;
@@ -118,7 +118,7 @@ class TestValidationResult
      * @param string $message
      * @param string|null $rule
      */
-    public function assertHasMessage(string $message, ?string $rule = null): static
+    public function assertHasMessage(string $message, null|string $rule = null): static
     {
         $validationMessages = $this->getValidationMessages($rule);
         assertContains($message, $validationMessages,
@@ -171,7 +171,7 @@ class TestValidationResult
      * @param string|null $rule
      * @return array<int, string>
      */
-    private function getValidationMessages(?string $rule = null): array
+    private function getValidationMessages(null|string $rule = null): array
     {
         $messages = $this->validator->messages()->getMessages();
         if ($rule) {

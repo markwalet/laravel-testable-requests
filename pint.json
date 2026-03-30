@@ -24,6 +24,12 @@
             ]
         },
         "global_namespace_import": true,
+        "nullable_type_declaration": {
+            "syntax": "union"
+        },
+        "nullable_type_declaration_for_default_null_value": {
+            "use_nullable_type_declaration": true
+        },
         "phpdoc_separation": false,
         "phpdoc_summary": true,
         "phpdoc_align": {

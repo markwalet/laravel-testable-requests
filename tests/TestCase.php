@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 abstract class TestCase extends Orchestra
 {
     /** @var TestResponse<Response>|null */
-    public static ?TestResponse $latestResponse = null;
+    public static null|TestResponse $latestResponse = null;
 
     /**
      * @param class-string<FormRequest> $requestClass

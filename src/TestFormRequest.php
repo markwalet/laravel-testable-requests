@@ -74,7 +74,7 @@ class TestFormRequest
      *
      * @param Authenticatable|null $user
      */
-    public function by(?Authenticatable $user = null): static
+    public function by(null|Authenticatable $user = null): static
     {
         $this->request->setUserResolver(fn () => $user);
 
