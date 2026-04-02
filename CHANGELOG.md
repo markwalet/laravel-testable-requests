@@ -5,6 +5,9 @@
 ### Changed
 - Renamed references to old `master` default branch.
 
+### Fixed
+- Fixed `assertFailsValidationFor()` to properly detect `Illuminate\Validation\Rules\Enum` and other rule classes implementing the `Rule` interface.
+
 ## [v0.6.0 (2026-03-30)](https://github.com/markwalet/laravel-testable-requests/compare/v0.5.0...v0.6.0)
 
 ### Added
