@@ -1,6 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.6.0...main)
+## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.6.1...main)
+
+## [v0.6.1 (2026-04-02)](https://github.com/markwalet/laravel-testable-requests/compare/v0.6.0...v0.6.1)
 
 ### Changed
 - Renamed references to old `master` default branch.
