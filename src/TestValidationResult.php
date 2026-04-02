@@ -2,6 +2,7 @@
 
 namespace MarkWalet\TestableRequests;
 
+use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -150,7 +151,8 @@ class TestValidationResult
                 $implementedInterfaces = class_exists($rule) ? class_implements($rule) ?: [] : [];
 
                 // TODO: Separate logic out to own class.
-                $normalizedRule = in_array(ValidationRule::class, $implementedInterfaces, true)
+                $isCustomRule = array_intersect([ValidationRule::class, Rule::class], $implementedInterfaces) !== [];
+                $normalizedRule = $isCustomRule
                     ? $rule
                     : Str::snake($rule);
 
