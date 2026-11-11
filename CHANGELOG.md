@@ -2,6 +2,9 @@
 
 ## [Unreleased](https://github.com/markwalet/laravel-testable-requests/compare/v0.6.1...main)
 
+### Removed
+- Removed support for Laravel 11.
+
 ## [v0.6.1 (2026-04-02)](https://github.com/markwalet/laravel-testable-requests/compare/v0.6.0...v0.6.1)
 
 ### Changed
